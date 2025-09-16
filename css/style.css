@@ -1,160 +1,244 @@
-/* Geral */
+/* ======  Variáveis globais ====== */
+
+:root {
+    --bg: #EEF3F8;
+    --bg-container: #fff;
+    --text: #03060f;
+    --button-bg: #6a74c9;
+    --button-bg-h: #5764b0;
+    --button-color: #eef3f8;
+    --border-color: #485392;
+    --muted: #ccc;
+    --box-shadow: rgba(0,0,0,0.1);
+    --radius: 15px;
+    --transition: 0.3s ease;
+}
+
+/* ======  Dark Mode ====== */
+
+html[data-theme="dark"]{
+    --bg: #161f3e;
+    --bg-container: #09112b;
+    --text: #eef3f8;
+    --button-bg: #eef3f8;
+    --button-color: #161f3e;
+    --border-color: #161f3e;
+    --muted: #444;
+    --box-shadow: rgba(255, 255, 255, 0.064);
+}
+
+/* ======  Reset / base ====== */
+
 *{
-    padding: 0;
     margin: 0;
-    font-family: helvetica;
-    color: #333;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html{
+html, body{
     height: 100vh;
 }
 
 body{
-    background-color: #333;
-    background-position: center;
-    background-size: cover;
+    background: var(--bg) center/cover no-repeat fixed;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    line-height: 1.4;
+    transition: background-color var(--transition), color var (--transition);
 }
 
-button{
-    background-color: #fdfdfd;
-    color: #102f5e;
-    border: 2px solid #102f5e;
-    padding: .3rem .6rem;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
+/* ======  Classe para acessibilidade ====== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-button:hover{
-    background-color: #102f5e;
-    color: #fff;
-}
+/* ======  Container principal ====== */
 
-button:hover > i{
-    color: #fff;
-}
-
-button i{
-    color: #102f5e;
-    font-weight: bold;
-    pointer-events: none;
-}
-
-input,select{
-    padding: 0.25rem 0.5rem;
-}
-
-.hide{
-    display: none;
-}
-
-/* Todo header */
 .todo-container{
-    max-width: 450px;
-    margin: 3rem auto;
-    background-color: #fdfdfd;
+    max-width: 520px;
+    margin: 2rem auto;
+    background: var(--bg-container);
     padding: 1.5rem;
-    border-radius: 15px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px var(--box-shadow);
 }
 
-.todo-container header{
+.todo-container header {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    padding: 0 1rem 1rem;
-    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--muted);
 }
 
-/* Todo form */
-#todo-form, #edit-form{
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
+/* ======  Formulários ====== */
+
+form{
+    margin-bottom: 1rem;
 }
 
-#todo-form p, #edit-form p{
+form p{
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
 .form-control{
     display: flex;
+    gap: 0.5rem;
 }
 
 .form-control input{
-    margin-right: .3rem;
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--muted);
+    border-radius: 6px;
 }
+
+/* ======  Botão cancelar edição ====== */
 
 #cancel-edit-btn{
     margin-top: 1rem;
+    width: 100%;
 }
 
-/* Todo toolbar */
+/* ======  Botões ====== */
+
+button{
+    background: var(--button-bg);
+    color: var(--button-color);
+    border: 2px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+button:hover{
+    background: var(--button-bg-h);
+}
+
+button:active{
+    transform: scale(0.8);
+}
+
+button i{
+    pointer-events: none;
+}
+
+/* ======  Toolbar (busca + filtro) ====== */
+
 #toolbar{
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--muted);
     display: flex;
-}
-
-#toolbar h4{
-    margin-bottom: .5rem;
+    gap: 1rem;
 }
 
 #search{
-    border-right: 1px solid #ddd;
-    padding-right: 1rem;
-    margin-right: 1rem;
-    width: 65%;
+    flex: 2;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    border-right: 1px solid var(--muted);
+    padding-right: 1rem;
 }
 
 #search form{
     display: flex;
+    gap: 0.5rem;
 }
 
-#search input{
-    width: 100%;
-    margin-right: 0.3rem;
-}
-
-#filter{
-    width: 35%;
-    display: flex;
-    flex-direction: column;
+#search input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--muted);
+    border-radius: 6px;
 }
 
 #filter select{
     flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--muted);
+    border-radius: 6px;
 }
 
-/* Todo list */
+/* ======  Lista de tarefas ====== */
+
 .todo{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
     padding: 1rem;
-    border-bottom: 1px solid #ddd;
-    transition: .3s;
+    border-bottom: 1px solid var(--muted);
+    transition: background var(--transition), transform var(--transition);
+}
+
+.todo:hover{
+    transform: translateX(4px);
+    background: rgba(0,0,0,0.03);
 }
 
 .todo h3{
     flex: 1;
-    font-size: .9rem;
+    font-size: 1rem;
+    word-break: break-word;
 }
 
 .todo button{
-    margin-left: 0.4rem;
+    margin-left: 0.3rem;
 }
 
-.done{
-    background-color: #395169;
+/* ======  estado concluído ====== */
+
+.todo.done{
+    background: var(--border-color);
+    color: var(--bg);
 }
 
-.done h3{
-    color: #fff;
+.todo.done h3{
     text-decoration: line-through;
     font-style: italic;
+}
+
+.todo.done button{
+    border-color: var(--bg);
+}
+
+/* ======  Responsividade ====== */
+
+@media (max-width: 560px) {
+  #toolbar {
+    flex-direction: column;
+    border-right: none;
+  }
+
+  .form-control {
+    flex-direction: column;
+  }
+
+  #search {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .todo-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
 }
