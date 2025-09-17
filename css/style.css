@@ -4,6 +4,7 @@
     --bg: #EEF3F8;
     --bg-container: #fff;
     --text: #03060f;
+    --text-d: #eef3f8;
     --button-bg: #6a74c9;
     --button-bg-h: #5764b0;
     --button-color: #eef3f8;
@@ -20,6 +21,7 @@ html[data-theme="dark"]{
     --bg: #161f3e;
     --bg-container: #09112b;
     --text: #eef3f8;
+    --text-d: #eef3f8;
     --button-bg: #eef3f8;
     --button-color: #161f3e;
     --border-color: #161f3e;
@@ -208,7 +210,7 @@ button i{
 
 .todo.done{
     background: var(--border-color);
-    color: var(--bg);
+    color: var(--text-d);
 }
 
 .todo.done h3{
